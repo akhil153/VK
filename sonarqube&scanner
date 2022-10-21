@@ -1,0 +1,165 @@
+first step : 1
+go to below link and download for sonarqube version (Show all versions) (SonarQube 6.7.7 (former LTS)) community version need to download 
+https://www.sonarqube.org/downloads/
+
+step : 2
+we get the zp file from above download option 
+sonarqube-6.7.7.zip
+
+step:3
+
+unzip the zip file 
+unzip sonarqube-6.7.7.zip 
+
+step : 4
+after that we will get a directory with name "sonarqube-6.7.7 "
+go to path cd /sonarqube-6.7.7/bin/linux-x86-64
+
+./sonar.sh console (once the console is Up then we can access the sonarqube console)
+---------------------------------------------------------------------------------------------
+
+~/Downloads/sonar/sonarqube-6.7.7/bin/linux-x86-64$ ./sonar.sh console
+Running SonarQube...
+wrapper  | --> Wrapper Started as Console
+wrapper  | Launching a JVM...
+jvm 1    | Wrapper (Version 3.2.3) http://wrapper.tanukisoftware.org
+jvm 1    |   Copyright 1999-2006 Tanuki Software, Inc.  All Rights Reserved.
+jvm 1    | 
+jvm 1    | 2022.10.19 18:50:35 INFO  app[][o.s.a.AppFileSystem] Cleaning or creating temp directory /home/bandaru/Downloads/sonar/sonarqube-6.7.7/temp
+jvm 1    | 2022.10.19 18:50:35 INFO  app[][o.s.a.es.EsSettings] Elasticsearch listening on /127.0.0.1:9001
+jvm 1    | 2022.10.19 18:50:35 INFO  app[][o.s.a.p.ProcessLauncherImpl] Launch process[[key='es', ipcIndex=1, logFilenamePrefix=es]] from [/home/bandaru/Downloads/sonar/sonarqube-6.7.7/elasticsearch]: /home/bandaru/Downloads/sonar/sonarqube-6.7.7/elasticsearch/bin/elasticsearch -Epath.conf=/home/bandaru/Downloads/sonar/sonarqube-6.7.7/temp/conf/es
+jvm 1    | 2022.10.19 18:50:35 INFO  app[][o.s.a.SchedulerImpl] Waiting for Elasticsearch to be up and running
+jvm 1    | 2022.10.19 18:50:35 INFO  app[][o.e.p.PluginsService] no modules loaded
+jvm 1    | 2022.10.19 18:50:35 INFO  app[][o.e.p.PluginsService] loaded plugin [org.elasticsearch.transport.Netty4Plugin]
+jvm 1    | 2022.10.19 18:50:44 INFO  app[][o.s.a.SchedulerImpl] Process[es] is up
+jvm 1    | 2022.10.19 18:50:44 INFO  app[][o.s.a.p.ProcessLauncherImpl] Launch process[[key='web', ipcIndex=2, logFilenamePrefix=web]] from [/home/bandaru/Downloads/sonar/sonarqube-6.7.7]: /home/bandaru/Downloads/java8/jdk1.8.0_202/jre/bin/java -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/home/bandaru/Downloads/sonar/sonarqube-6.7.7/temp -Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -cp ./lib/common/*:./lib/server/*:/home/bandaru/Downloads/sonar/sonarqube-6.7.7/lib/jdbc/h2/h2-1.3.176.jar org.sonar.server.app.WebServer /home/bandaru/Downloads/sonar/sonarqube-6.7.7/temp/sq-process727032378089902666properties
+jvm 1    | 2022.10.19 18:51:36 INFO  app[][o.s.a.SchedulerImpl] Process[web] is up
+jvm 1    | 2022.10.19 18:51:36 INFO  app[][o.s.a.p.ProcessLauncherImpl] Launch process[[key='ce', ipcIndex=3, logFilenamePrefix=ce]] from [/home/bandaru/Downloads/sonar/sonarqube-6.7.7]: /home/bandaru/Downloads/java8/jdk1.8.0_202/jre/bin/java -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/home/bandaru/Downloads/sonar/sonarqube-6.7.7/temp -Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -cp ./lib/common/*:./lib/server/*:./lib/ce/*:/home/bandaru/Downloads/sonar/sonarqube-6.7.7/lib/jdbc/h2/h2-1.3.176.jar org.sonar.ce.app.CeServer /home/bandaru/Downloads/sonar/sonarqube-6.7.7/temp/sq-process3080319111317966371properties
+jvm 1    | 2022.10.19 18:51:41 INFO  app[][o.s.a.SchedulerImpl] Process[ce] is up
+jvm 1    | 2022.10.19 18:51:41 INFO  app[][o.s.a.SchedulerImpl] SonarQube is up
+---------------------------------------------------------------------------------------------------------above is the expected output....
+
+step : 5
+after that go to browser  then hit http://localhost:9000
+
+with this sonarqube installation completes succesfully 
+
+step : 6 
+go to this link and download the sonar scanner 
+https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
+
+after installing we will get .zip file & then unzip after unzip ( linux 64 bit)
+we will get directory
+sonar-scanner-4.7.0.2747-linux 
+cd conf/
+cat sonar-scanner.properties
+(in sonar-scanner.properties file need to update the sonarqube url with port http://localhost:9000)
+-------------------------------------------------------
+#----- Default SonarQube server
+sonar.host.url=http://localhost:9000
+
+#----- Default source code encoding
+sonar.sourceEncoding=UTF-8
+------------------------------------------------------
+step : 7 (pushing the code into sonarqube by using below command)
+
+cd bin/
+./sonar-scanner -Dsonar.projectKey=akhil  -Dsonar.projectName=akhil  -Dsonar.projectVersion=1.0 -Dsonar.sources=/home/bandaru/git -Dsonar.sourceEncoding=UTF-8
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+INFO: Scanner configuration file: /home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 4.7.0.2747
+INFO: Java 11.0.14.1 Eclipse Adoptium (64-bit)
+INFO: Linux 5.15.0-50-generic amd64
+INFO: User cache: /home/bandaru/.sonar/cache
+INFO: Scanner configuration file: /home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: Analyzing on SonarQube server 6.7.7
+INFO: Default locale: "en_IN", source code encoding: "UTF-8"
+INFO: Publish mode
+INFO: Load global settings
+INFO: Load global settings (done) | time=119ms
+INFO: Server id: BF41A1F2-AYPwZ2WMXdOZtGmVLLa6
+INFO: User cache: /home/bandaru/.sonar/cache
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=67ms
+INFO: Process project properties
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=95ms
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=128ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=2289ms
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=240ms
+WARN: SCM provider autodetection failed. No SCM provider claims to support this project. Please use sonar.scm.provider to define SCM of your project.
+INFO: Project key: akhil
+INFO: -------------  Scan akhil
+INFO: Load server rules
+INFO: Load server rules (done) | time=824ms
+INFO: Base dir: /home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin
+INFO: Working dir: /home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin/.scannerwork
+INFO: Source paths: /home/bandaru/git
+INFO: Source encoding: UTF-8, default locale: en_IN
+INFO: Index files
+WARN: File '/home/bandaru/git/sonarqube-example/README.md' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/launches/com.examples.school (verify).launch' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/launches/com.examples.school (Sonar Only).launch' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/launches/com.examples.school (Sonar).launch' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/launches/com.examples.school (Docker Stop).launch' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/pom.xml' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/it/java/com/examples/school/controller/SchoolControllerIT.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/it/java/com/examples/school/view/swing/StudentSwingViewIT.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/it/java/com/examples/school/repository/mongo/StudentMongoRepositoryTestcontainersIT.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/e2e/java/com/examples/school/view/swing/SchoolSwingAppE2E.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/test/java/com/examples/school/controller/SchoolControllerTest.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/test/java/com/examples/school/repository/mongo/StudentMongoRepositoryTest.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/view/StudentView.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/view/swing/StudentSwingView.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/controller/SchoolController.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/app/swing/SchoolSwingApp.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/test/java/com/examples/school/view/swing/StudentSwingViewTest.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/launches/com.examples.school (Docker Start).launch' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/repository/mongo/StudentMongoRepository.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/repository/StudentRepository.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+WARN: File '/home/bandaru/git/sonarqube-example/com.examples.school/src/main/java/com/examples/school/model/Student.java' is ignored. It is not located in module basedir '/home/bandaru/Downloads/sonarscanner/sonar-scanner-4.7.0.2747-linux/bin'.
+INFO: 0 files indexed
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by net.sf.cglib.core.ReflectUtils$1 (file:/home/bandaru/.sonar/cache/3c43ca34b48e025530485308ddac54a2/sonar-javascript-plugin-3.2.0.5506.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of net.sf.cglib.core.ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+INFO: Sensor SonarJavaXmlFileSensor [java]
+INFO: Sensor SonarJavaXmlFileSensor [java] (done) | time=0ms
+INFO: Sensor Analyzer for "php.ini" files [php]
+INFO: Sensor Analyzer for "php.ini" files [php] (done) | time=3ms
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=0ms
+INFO: Sensor CPD Block Indexer
+INFO: Sensor CPD Block Indexer (done) | time=0ms
+INFO: No SCM system was detected. You can use the 'sonar.scm.provider' property to explicitly specify it.
+INFO: Calculating CPD for 0 files
+INFO: CPD calculation finished
+INFO: Analysis report generated in 92ms, dir size=22 KB
+INFO: Analysis reports compressed in 11ms, zip size=5 KB
+INFO: Analysis report uploaded in 653ms
+INFO: ANALYSIS SUCCESSFUL, you can browse http://localhost:9000/dashboard/index/akhil
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at http://localhost:9000/api/ce/task?id=AYPwatvIXdOZtGmVLMQf
+INFO: Task total time: 7.350 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 9.895s
+INFO: Final Memory: 7M/30M
+INFO: ------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------pushed succesfully-----------------
+
+then go to sonarqube console and check for the projects with name "akhil" and check for the pushed code  
+
+
+
+

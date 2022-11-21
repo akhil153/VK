@@ -443,5 +443,9 @@ wget http://192.168.1.5:8081/repository/akhil/Biostats.jar --user=admin --passwo
 where http://192.168.1.5:8081/repository/akhil/Biostats.jar the bar file location in akhil repository & credentials for connecting to akhil repo in nexus 
 then it is successfully downloaded to LOcal linux server from nexus 
 
+step:10
+for all version releases check below link 
+https://help.sonatype.com/repomanager3/product-information/release-notes
+
 
 

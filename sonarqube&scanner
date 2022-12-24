@@ -158,8 +158,10 @@ INFO: Final Memory: 7M/30M
 INFO: ------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------pushed succesfully-----------------
 
-then go to sonarqube console and check for the projects with name "akhil" and check for the pushed code  
+then go to sonarqube console and check for the projects with name "akhil" and check for the pushed code 
 
+or push by using 
+---------------
+./sonar-scanner -Dsonar.projectKey=maven-web-application  -Dsonar.projectName=maven-web-application  -Dsonar.projectVersion=1.0 -Dsonar.sources=/opt/SS1/sonar-scanner-4.7.0.2747-linux/bin -Dsonar.sourceEncoding=UTF-8 -Dsonar.sonar.host.url=http://192.168.1.81:9000 -Dsonar.login=squ_fb5555cc745e4e1ca455e79772bb86ab530311da
 
-
-
+here in the path  (/opt/SS1/sonar-scanner-4.7.0.2747-linux/bin) we need to place the project (maven-web-application) and then run the above command .....also goive the sonar qube host url and token 
